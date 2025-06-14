@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -99,5 +100,40 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="rtl"] .space-x-2 > * + * {
+    @apply ml-0 mr-2;
+  }
+
+  [dir="rtl"] .space-x-4 > * + * {
+    @apply ml-0 mr-4;
+  }
+
+  [dir="rtl"] .space-x-8 > * + * {
+    @apply ml-0 mr-8;
+  }
+}
+
+@layer utilities {
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute inset-0 p-[1px] bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: subtract;
   }
 }
